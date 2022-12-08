@@ -120,6 +120,8 @@ public class Cliente extends JFrame  {
 				posicionesCliente[1] = "X";
 				btnPos2.setText("X");
 				clickString="2";
+				envio1.print(clickString+"\n");
+				envio1.flush();
 				}
 				
 			}
@@ -135,6 +137,8 @@ public class Cliente extends JFrame  {
 				posicionesCliente[2] = "X";
 				btnPos3.setText("X");
 				clickString="3";
+				envio1.print(clickString+"\n");
+				envio1.flush();
 				}
 			}
 		});
@@ -149,6 +153,8 @@ public class Cliente extends JFrame  {
 				posicionesCliente[3] = "X";
 				btnPos4.setText("X");
 				clickString="4";
+				envio1.print(clickString+"\n");
+				envio1.flush();
 				}
 			}
 		});
@@ -162,6 +168,8 @@ public class Cliente extends JFrame  {
 				posicionesCliente[4] = "X";
 				btnPos5.setText("X");
 				clickString="5";
+				envio1.print(clickString+"\n");
+				envio1.flush();
 				}
 			}
 		});
@@ -175,6 +183,8 @@ public class Cliente extends JFrame  {
 				posicionesCliente[5] = "X";
 				btnPos6.setText("X");
 				clickString="6";
+				envio1.print(clickString+"\n");
+				envio1.flush();
 				}
 			}
 		});
@@ -188,6 +198,8 @@ public class Cliente extends JFrame  {
 				posicionesCliente[6] = "X";
 				btnPos7.setText("X");
 				clickString="7";
+				envio1.print(clickString+"\n");
+				envio1.flush();
 				}
 			}
 		});
@@ -201,6 +213,8 @@ public class Cliente extends JFrame  {
 				posicionesCliente[7] = "X";
 				btnPos8.setText("X");
 				clickString="8";
+				envio1.print(clickString+"\n");
+				envio1.flush();
 				}
 			}
 		});
@@ -214,6 +228,8 @@ public class Cliente extends JFrame  {
 				posicionesCliente[8] = "X";
 				btnPos9.setText("X");
 				clickString="9";
+				envio1.print(clickString+"\n");
+				envio1.flush();
 				}
 			}
 		});
