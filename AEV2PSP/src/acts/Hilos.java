@@ -6,6 +6,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.Iterator;
 
 public class Hilos implements Runnable {
 	
@@ -42,15 +43,41 @@ public class Hilos implements Runnable {
 		    	System.err.println("Empieza el cliente");
 		    	
 				PrintWriter pw = new PrintWriter(conexion.getOutputStream());
-				pw.print("Empieza el cliente\n");
-				
+				pw.print("Empieza el cliente\n");			
 				pw.flush();
+				
+				//RECIBO DATOS TURNO DE CLIENTE
+				InputStream is1 = conexion.getInputStream();
+				InputStreamReader isr1 = new InputStreamReader(is1);
+				BufferedReader bfr1 = new BufferedReader(isr1);
+				
+				
+				String turno1Cliente = bfr1.readLine();
+				System.err.println("CLIENTE ATACA EN " + turno1Cliente);
+				int posicion = Integer.parseInt(turno1Cliente);
+				posicionesCliente[posicion]="x";
+				
+				
+				//ENVIO DATOS TURNO DE MAQUINA
+				int turno1Maquina;
+				do {
+				     turno1Maquina = (int) (Math.random()*9);
+				     if (posicionesCliente[turno1Maquina]==null) {
+							PrintWriter pw1 = new PrintWriter(conexion.getOutputStream());
+							pw1.print(turno1Maquina+"\n");			
+							pw1.flush();
+							posicionesServidor[turno1Maquina] = "x";
+					}
+					
+				} while (posicionesCliente[turno1Maquina]!=null);
+				
+
 				
 			} else {
 				System.err.println("Empieza el servidor");
 				PrintWriter pw = new PrintWriter(conexion.getOutputStream());
 				pw.print("Empieza la maquina\n");
-				
+
 				pw.flush();
 			}
 

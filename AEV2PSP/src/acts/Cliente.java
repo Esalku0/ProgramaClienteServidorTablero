@@ -8,6 +8,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.InetSocketAddress;
 import java.net.Socket;
+import java.util.Iterator;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -15,6 +16,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Cliente extends JFrame  {
 
@@ -35,7 +38,8 @@ public class Cliente extends JFrame  {
 	String[] posicionesCliente= new String[9];
 
 	String[] posicionesServidor= new String[9];
-
+	static String clickString="";
+	static PrintWriter envio1;
 	public static void main(String[] args) throws IOException, ClassNotFoundException  {
 		
 		
@@ -53,6 +57,7 @@ public class Cliente extends JFrame  {
 					pw.print(numero+"\n");	
 					pw.flush();
 
+
 					InputStream is = conexion.getInputStream();
 					InputStreamReader isr = new InputStreamReader(is);
 					BufferedReader bfr = new BufferedReader(isr);
@@ -61,6 +66,10 @@ public class Cliente extends JFrame  {
 					
 					if (quienEmpieza.contains("cliente")) {
 						System.out.println("Vamos a ganar ;)");
+						envio1 = new PrintWriter(conexion.getOutputStream());
+						
+		
+						
 					}else {
 						System.out.println("Lo vamos a intentar");
 					}
@@ -87,38 +96,127 @@ public class Cliente extends JFrame  {
 		contentPane.setLayout(null);
 
 		btnPos1 = new JButton("");
+		btnPos1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				if(posicionesServidor[0]==null) {
+				posicionesCliente[0] = "X";
+				btnPos1.setText("X");
+				clickString="1";
+				envio1.print(clickString+"\n");
+				envio1.flush();
+				}
+
+			}
+		});
 		btnPos1.setBounds(101, 37, 69, 59);
 		contentPane.add(btnPos1);
 
 		btnPos2 = new JButton("");
+		btnPos2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				if(posicionesServidor[1]==null) {
+				posicionesCliente[1] = "X";
+				btnPos2.setText("X");
+				clickString="2";
+				}
+				
+			}
+		});
 		btnPos2.setBounds(205, 37, 69, 59);
 		contentPane.add(btnPos2);
 
 		btnPos3 = new JButton("");
+		btnPos3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				if(posicionesServidor[2]==null) {
+				posicionesCliente[2] = "X";
+				btnPos3.setText("X");
+				clickString="3";
+				}
+			}
+		});
 		btnPos3.setBounds(301, 37, 69, 59);
 		contentPane.add(btnPos3);
 
 		btnPos4 = new JButton("");
+		btnPos4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				if(posicionesServidor[3]==null) {
+				posicionesCliente[3] = "X";
+				btnPos4.setText("X");
+				clickString="4";
+				}
+			}
+		});
 		btnPos4.setBounds(101, 128, 69, 59);
 		contentPane.add(btnPos4);
 
 		btnPos5 = new JButton("");
+		btnPos5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(posicionesServidor[4]==null) {
+				posicionesCliente[4] = "X";
+				btnPos5.setText("X");
+				clickString="5";
+				}
+			}
+		});
 		btnPos5.setBounds(205, 128, 69, 59);
 		contentPane.add(btnPos5);
 
 		btnPos6 = new JButton("");
+		btnPos6.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(posicionesServidor[5]==null) {
+				posicionesCliente[5] = "X";
+				btnPos6.setText("X");
+				clickString="6";
+				}
+			}
+		});
 		btnPos6.setBounds(301, 128, 69, 59);
 		contentPane.add(btnPos6);
 
 		btnPos7 = new JButton("");
+		btnPos7.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(posicionesServidor[6]==null) {
+				posicionesCliente[6] = "X";
+				btnPos7.setText("X");
+				clickString="7";
+				}
+			}
+		});
 		btnPos7.setBounds(101, 217, 69, 59);
 		contentPane.add(btnPos7);
 
 		btnPos8 = new JButton("");
+		btnPos8.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(posicionesServidor[7]==null) {
+				posicionesCliente[7] = "X";
+				btnPos8.setText("X");
+				clickString="8";
+				}
+			}
+		});
 		btnPos8.setBounds(205, 217, 69, 59);
 		contentPane.add(btnPos8);
 
 		btnPos9 = new JButton("");
+		btnPos9.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(posicionesServidor[8]==null) {
+				posicionesCliente[8] = "X";
+				btnPos9.setText("X");
+				clickString="9";
+				}
+			}
+		});
 		btnPos9.setBounds(301, 217, 69, 59);
 		contentPane.add(btnPos9);
 
