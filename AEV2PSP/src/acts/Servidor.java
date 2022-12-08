@@ -11,7 +11,7 @@ public class Servidor {
 		ServerSocket socketEscucha = null;
 		System.err.println("CONEXION FUNCIONAL");
 		try {
-			socketEscucha = new ServerSocket(7878);
+			socketEscucha = new ServerSocket(1234);
 		} catch (IOException e) {
 			System.err.println("SERVIDOR >>> Error");
 			return;
