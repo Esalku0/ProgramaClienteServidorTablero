@@ -11,7 +11,7 @@ import java.util.Iterator;
 public class Hilos implements Runnable {
 	
 	 Socket conexion;
-		String[] posicionesCliente= new String[9];
+		String[] posicionesCliente= {".", ".", ".", ".", ".", ".", ".", ".","."};
 
 		String[] posicionesServidor= new String[9];
 
@@ -37,14 +37,15 @@ public class Hilos implements Runnable {
 		
 		do {
 		     turno1Maquina = (int) (Math.random()*9);
-
-		     if (posicionesCliente[turno1Maquina]==null) {
+		     System.out.println(posicionesCliente[turno1Maquina]);
+		     if (posicionesCliente[turno1Maquina].equals(".")) {
 					PrintWriter pw1 = new PrintWriter(conexion.getOutputStream());
 					pw1.print(turno1Maquina+"\n");			
 					pw1.flush();
 					comprobar=true;
 					posicionesServidor[turno1Maquina] = "x";
-					System.out.println(turno1Maquina);
+					System.out.println("Posicion maquina" + turno1Maquina);
+			
 			}else {
 				comprobar=false;
 			}
@@ -83,16 +84,69 @@ public class Hilos implements Runnable {
 		
 				generarPosicion();
 				generarPosicion();
+				
+
+				
 				generarPosicion();
+				for (int i = 0; i < posicionesCliente.length; i++) {
+					
+					System.out.println(	posicionesCliente[i].toString());
+			}
+	    
 				generarPosicion();
+				for (int i = 0; i < posicionesCliente.length; i++) {
+					
+					System.out.println(	posicionesCliente[i].toString());
+			}
+	    
 				generarPosicion();
+				for (int i = 0; i < posicionesCliente.length; i++) {
+					
+					System.out.println(	posicionesCliente[i].toString());
+			}
+	    
 				generarPosicion();
+				for (int i = 0; i < posicionesCliente.length; i++) {
+					
+					System.out.println(	posicionesCliente[i].toString());
+			}
+	    
 				generarPosicion();
+				for (int i = 0; i < posicionesCliente.length; i++) {
+					
+					System.out.println(	posicionesCliente[i].toString());
+			}
+	    
 				generarPosicion();
+				for (int i = 0; i < posicionesCliente.length; i++) {
+					
+					System.out.println(	posicionesCliente[i].toString());
+			}
+	    
 				generarPosicion();
+				for (int i = 0; i < posicionesCliente.length; i++) {
+					
+					System.out.println(	posicionesCliente[i].toString());
+			}
+	    
 				generarPosicion();
+				for (int i = 0; i < posicionesCliente.length; i++) {
+					
+					System.out.println(	posicionesCliente[i].toString());
+			}
+	    
 				generarPosicion();
+				for (int i = 0; i < posicionesCliente.length; i++) {
+					
+					System.out.println(	posicionesCliente[i].toString());
+			}
+	    
 				generarPosicion();
+				for (int i = 0; i < posicionesCliente.length; i++) {
+					
+					System.out.println(	posicionesCliente[i].toString());
+			}
+	    
 				generarPosicion();
 				generarPosicion();
 				generarPosicion();
