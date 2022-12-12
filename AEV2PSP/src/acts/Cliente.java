@@ -178,9 +178,14 @@ public class Cliente extends JFrame {
 						InputStream is1 = conexion.getInputStream();
 						InputStreamReader isr1 = new InputStreamReader(is1);
 						BufferedReader bfr1 = new BufferedReader(isr1);
-
+						System.out.println("yeye");
 						turnoClient = bfr1.readLine();
 						System.out.println(turnoClient);
+						System.out.println("yeye");
+						
+						//EL CLIENTE ESTA ESPERANDO A LEER MAS MENSAJES PERO NO LE ENVIA MAS
+						//AHORA SE DEBE ACCIONAR EL BOTON, ES DECIR, EL READLINE
+						//VA DESPUES DE HACER CLICK A ALGUN BOTON
 
 						InputStream is2 = conexion.getInputStream();
 						InputStreamReader isr2 = new InputStreamReader(is2);
