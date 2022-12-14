@@ -16,7 +16,6 @@ public class Servidor {
 			System.err.println("SERVIDOR >>> Error");
 			return;
 		}
-	
 			Socket conexion = socketEscucha.accept();
 			System.err.println("SERVIDOR >>> Conexion recibida --> Lanza hilo clase Peticion");
 			Hilos  p = new Hilos(conexion);

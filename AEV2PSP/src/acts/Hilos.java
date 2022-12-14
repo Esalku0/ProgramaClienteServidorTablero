@@ -34,7 +34,7 @@ public class Hilos implements Runnable {
 		int turno1Maquina;
 
 		do {
-			turno1Maquina = (int) (Math.random() * 9);
+			turno1Maquina = (int) (Math.random() * 9+1);
 			System.out.println(posicionesCliente[turno1Maquina]);
 			if (posicionesCliente[turno1Maquina].equals(".")) {
 				PrintWriter pw1 = new PrintWriter(conexion.getOutputStream());
@@ -51,28 +51,26 @@ public class Hilos implements Runnable {
 	}
 
 	public void generaPosicionInicioMaquina() throws IOException {
-
-
 		// ENVIO DATOS TURNO DE MAQUINA
 		boolean comprobar = false;
 		int turno1Maquina;
-
 		do {
 			turno1Maquina = (int) (Math.random() * 9);
-			System.out.println(posicionesCliente[turno1Maquina]);
 			if (posicionesCliente[turno1Maquina].equals(".")) {
 				PrintWriter pw1 = new PrintWriter(conexion.getOutputStream());
-				pw1.print(turno1Maquina + "\n");
+//				pw1.print(String.valueOf(turno1Maquina)+ "\n");
+				pw1.print("hola \n");
 				pw1.flush();
+			
 				comprobar = true;
 				posicionesServidor[turno1Maquina] = "x";
-				System.out.println("Posicion maquina" + turno1Maquina);
+				System.err.println("Posicion maquina " + turno1Maquina);
 
 			} else {
 				comprobar = false;
 			}
 		} while (!comprobar);
-
+		System.err.println("YEEE");
 	}
 	
 	
@@ -116,24 +114,46 @@ public class Hilos implements Runnable {
 
 			} else {
 				System.err.println("Empieza el servidor");
-				PrintWriter pw = new PrintWriter(conexion.getOutputStream());
-				pw.print("Empieza la maquina\n");
-
-				pw.flush();
 				
+				PrintWriter pw = new PrintWriter(conexion.getOutputStream());
+				pw.print("Empieza la maquina \n");
+				pw.flush();
+
+
 				
 				generaPosicionInicioMaquina();
+				
 				
 				InputStream is1 = conexion.getInputStream();
 				InputStreamReader isr1 = new InputStreamReader(is1);
 				BufferedReader bfr1 = new BufferedReader(isr1);
-
+				System.out.println("esperando...");
+				
 				String turno1Cliente = bfr1.readLine();
 				System.err.println("CLIENTE ATACA EN " + turno1Cliente);
 				int posicion = Integer.parseInt(turno1Cliente);
 				posicionesCliente[posicion] = "O";
+
 				generaPosicionInicioMaquina();
+				InputStream is12 = conexion.getInputStream();
+				InputStreamReader isr12 = new InputStreamReader(is12);
+				BufferedReader bfr12 = new BufferedReader(isr12);
+
+				String turno2Cliente = bfr12.readLine();
+				System.err.println("CLIENTE ATACA EN " + turno2Cliente);
+				int posicion2 = Integer.parseInt(turno2Cliente);
+				
+				posicionesCliente[posicion2] = "O";
 				generaPosicionInicioMaquina();
+				InputStream is123= conexion.getInputStream();
+				InputStreamReader isr123 = new InputStreamReader(is123);
+				BufferedReader bfr123 = new BufferedReader(isr123);
+
+				String turno3Cliente = bfr123.readLine();
+				System.err.println("CLIENTE ATACA EN " + turno3Cliente);
+				int posicion3 = Integer.parseInt(turno3Cliente);
+				
+				posicionesCliente[posicion3] = "O";
 				generaPosicionInicioMaquina();
 				generaPosicionInicioMaquina();
 				generaPosicionInicioMaquina();

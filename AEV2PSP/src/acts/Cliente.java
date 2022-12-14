@@ -57,7 +57,7 @@ public class Cliente extends JFrame {
 	static String turnoClient7;
 	static String turnoClient8;
 	static String turnoClient9;
-	static String quiemEmpieza;
+	static String quienEmpieza;
 
 	public void comprobarVictoria() {
 		if (btnPos1.getText().equals("X") && btnPos2.getText().equals("X") && btnPos3.getText().equals("X")) {
@@ -94,14 +94,16 @@ public class Cliente extends JFrame {
 		}
 	}
 
-	public void recibirDeServidor() {
+	public static void recibirDeServidor() {
+		System.out.println("Soy concha, entro");
 		try {
 			InputStream is1 = conexion.getInputStream();
 			InputStreamReader isr1 = new InputStreamReader(is1);
 			BufferedReader bfr1 = new BufferedReader(isr1);
-
+			System.out.println("chivatooo");
 			String turno2Servidor = bfr1.readLine();
-			System.out.println(turno2Servidor);
+			System.out.println("syso" + turno2Servidor);
+			
 			switch (Integer.parseInt(turno2Servidor)) {
 			case 0:
 				btnPos1.setText("O");
@@ -157,7 +159,8 @@ public class Cliente extends JFrame {
 					InputStreamReader isr = new InputStreamReader(is);
 					BufferedReader bfr = new BufferedReader(isr);
 
-					String quienEmpieza = bfr.readLine();
+					 quienEmpieza = bfr.readLine();
+					 System.out.println(quienEmpieza);
 
 					if (quienEmpieza.contains("cliente")) {
 						quienEmpieza = "cliente";
@@ -173,67 +176,23 @@ public class Cliente extends JFrame {
 						envio9 = new PrintWriter(conexion.getOutputStream());
 
 					} else {
-						quienEmpieza = "servidor";
 						System.out.println("Lo vamos a intentar");
-						InputStream is1 = conexion.getInputStream();
-						InputStreamReader isr1 = new InputStreamReader(is1);
-						BufferedReader bfr1 = new BufferedReader(isr1);
-						System.out.println("yeye");
-						turnoClient = bfr1.readLine();
-						System.out.println(turnoClient);
-						System.out.println("yeye");
+//						InputStream is1 = conexion.getInputStream();
+//						InputStreamReader isr1 = new InputStreamReader(is1);
+//						BufferedReader bfr1 = new BufferedReader(isr1);
+//						System.out.println("ANTES");
+//						
+//						//----------------
+//						turnoClient = bfr1.readLine();
+//						System.out.println("RESULTADO LECTURA " + turnoClient);
+//						System.out.println("DESPUES");
+						quienEmpieza = "servidor";
 						
 						//EL CLIENTE ESTA ESPERANDO A LEER MAS MENSAJES PERO NO LE ENVIA MAS
 						//AHORA SE DEBE ACCIONAR EL BOTON, ES DECIR, EL READLINE
 						//VA DESPUES DE HACER CLICK A ALGUN BOTON
+						recibirDeServidor();
 
-						InputStream is2 = conexion.getInputStream();
-						InputStreamReader isr2 = new InputStreamReader(is2);
-						BufferedReader bfr2 = new BufferedReader(isr2);
-
-						turnoClient2 = bfr2.readLine();
-
-						InputStream is3 = conexion.getInputStream();
-						InputStreamReader isr3 = new InputStreamReader(is3);
-						BufferedReader bfr3 = new BufferedReader(isr3);
-
-						turnoClient3 = bfr3.readLine();
-
-						InputStream is4 = conexion.getInputStream();
-						InputStreamReader isr4 = new InputStreamReader(is4);
-						BufferedReader bfr4 = new BufferedReader(isr4);
-
-						turnoClient4 = bfr4.readLine();
-
-						InputStream is5 = conexion.getInputStream();
-						InputStreamReader isr5 = new InputStreamReader(is5);
-						BufferedReader bfr5 = new BufferedReader(isr5);
-
-						turnoClient5 = bfr5.readLine();
-
-						InputStream is6 = conexion.getInputStream();
-						InputStreamReader isr6 = new InputStreamReader(is6);
-						BufferedReader bfr6 = new BufferedReader(isr6);
-
-						turnoClient6 = bfr6.readLine();
-
-						InputStream is7 = conexion.getInputStream();
-						InputStreamReader isr7 = new InputStreamReader(is7);
-						BufferedReader bfr7 = new BufferedReader(isr7);
-
-						turnoClient7 = bfr7.readLine();
-
-						InputStream is8 = conexion.getInputStream();
-						InputStreamReader isr8 = new InputStreamReader(is8);
-						BufferedReader bfr8 = new BufferedReader(isr8);
-
-						turnoClient8 = bfr8.readLine();
-
-						InputStream is9 = conexion.getInputStream();
-						InputStreamReader isr9 = new InputStreamReader(is9);
-						BufferedReader bfr9 = new BufferedReader(isr9);
-
-						turnoClient9 = bfr9.readLine();
 						
 					}
 
@@ -258,7 +217,7 @@ public class Cliente extends JFrame {
 		btnPos1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				if (quiemEmpieza.equals("cliente")) {
+				if (quienEmpieza.equals("cliente")) {
 					if (posicionesServidor[0] == null) {
 						posicionesCliente[0] = "X";
 						btnPos1.setText("X");
@@ -270,7 +229,6 @@ public class Cliente extends JFrame {
 					recibirDeServidor();
 					comprobarVictoria();
 				} else {
-					recibirDeServidor();
 					if (posicionesServidor[0] == null) {
 						posicionesCliente[0] = "X";
 						btnPos1.setText("X");
@@ -278,6 +236,7 @@ public class Cliente extends JFrame {
 						envio1.print(clickString + "\n");
 						envio1.flush();
 					}
+					recibirDeServidor();
 					comprobarVictoria();
 				}
 			}
@@ -289,7 +248,7 @@ public class Cliente extends JFrame {
 		btnPos2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				if (quiemEmpieza.equals("cliente")) {
+				if (quienEmpieza.equals("cliente")) {
 
 					if (posicionesServidor[1] == null) {
 						posicionesCliente[1] = "X";
@@ -303,7 +262,7 @@ public class Cliente extends JFrame {
 					comprobarVictoria();
 
 				} else {
-					recibirDeServidor();
+				
 					if (posicionesServidor[0] == null) {
 						posicionesCliente[0] = "X";
 						btnPos1.setText("X");
@@ -311,6 +270,7 @@ public class Cliente extends JFrame {
 						envio1.print(clickString + "\n");
 						envio1.flush();
 					}
+					recibirDeServidor();
 					comprobarVictoria();
 				}
 			}
@@ -321,7 +281,7 @@ public class Cliente extends JFrame {
 		btnPos3 = new JButton("");
 		btnPos3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (quiemEmpieza.equals("cliente")) {
+				if (quienEmpieza.equals("cliente")) {
 					if (posicionesServidor[2] == null) {
 						posicionesCliente[2] = "X";
 						btnPos3.setText("X");
@@ -332,7 +292,7 @@ public class Cliente extends JFrame {
 					recibirDeServidor();
 					comprobarVictoria();
 				} else {
-					recibirDeServidor();
+					
 					if (posicionesServidor[2] == null) {
 						posicionesCliente[2] = "X";
 						btnPos3.setText("X");
@@ -340,7 +300,7 @@ public class Cliente extends JFrame {
 						envio3.print(clickString + "\n");
 						envio3.flush();
 					}
-
+					recibirDeServidor();
 				}
 			}
 		});
@@ -350,7 +310,7 @@ public class Cliente extends JFrame {
 		btnPos4 = new JButton("");
 		btnPos4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (quiemEmpieza.equals("cliente")) {
+				if (quienEmpieza.equals("cliente")) {
 					if (posicionesServidor[3] == null) {
 						posicionesCliente[3] = "X";
 						btnPos4.setText("X");
@@ -361,7 +321,7 @@ public class Cliente extends JFrame {
 					recibirDeServidor();
 					comprobarVictoria();
 				} else {
-					recibirDeServidor();
+					
 					if (posicionesServidor[3] == null) {
 						posicionesCliente[3] = "X";
 						btnPos4.setText("X");
@@ -369,6 +329,7 @@ public class Cliente extends JFrame {
 						envio4.print(clickString + "\n");
 						envio4.flush();
 					}
+					recibirDeServidor();
 					comprobarVictoria();
 				}
 			}
@@ -379,7 +340,7 @@ public class Cliente extends JFrame {
 		btnPos5 = new JButton("");
 		btnPos5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (quiemEmpieza.equals("cliente")) {
+				if (quienEmpieza.equals("cliente")) {
 					if (posicionesServidor[4] == null) {
 						posicionesCliente[4] = "X";
 						btnPos5.setText("X");
@@ -390,7 +351,7 @@ public class Cliente extends JFrame {
 					recibirDeServidor();
 					comprobarVictoria();
 				} else {
-					recibirDeServidor();
+					
 					if (posicionesServidor[4] == null) {
 						posicionesCliente[4] = "X";
 						btnPos5.setText("X");
@@ -398,6 +359,7 @@ public class Cliente extends JFrame {
 						envio5.print(clickString + "\n");
 						envio5.flush();
 					}
+					recibirDeServidor();
 					comprobarVictoria();
 				}
 			}
@@ -408,7 +370,7 @@ public class Cliente extends JFrame {
 		btnPos6 = new JButton("");
 		btnPos6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (quiemEmpieza.equals("cliente")) {
+				if (quienEmpieza.equals("cliente")) {
 					if (posicionesServidor[5] == null) {
 						posicionesCliente[5] = "X";
 						btnPos6.setText("X");
@@ -419,7 +381,7 @@ public class Cliente extends JFrame {
 					recibirDeServidor();
 					comprobarVictoria();
 				} else {
-					recibirDeServidor();
+					
 					if (posicionesServidor[5] == null) {
 						posicionesCliente[5] = "X";
 						btnPos6.setText("X");
@@ -427,6 +389,7 @@ public class Cliente extends JFrame {
 						envio6.print(clickString + "\n");
 						envio6.flush();
 					}
+					recibirDeServidor();
 					comprobarVictoria();
 				}
 			}
@@ -438,7 +401,7 @@ public class Cliente extends JFrame {
 		btnPos7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				if (quiemEmpieza.equals("cliente")) {
+				if (quienEmpieza.equals("cliente")) {
 					if (posicionesServidor[6] == null) {
 						posicionesCliente[6] = "X";
 						btnPos7.setText("X");
@@ -449,7 +412,7 @@ public class Cliente extends JFrame {
 					recibirDeServidor();
 					comprobarVictoria();
 				} else {
-					recibirDeServidor();
+					
 					if (posicionesServidor[6] == null) {
 						posicionesCliente[6] = "X";
 						btnPos7.setText("X");
@@ -457,6 +420,7 @@ public class Cliente extends JFrame {
 						envio7.print(clickString + "\n");
 						envio7.flush();
 					}
+					recibirDeServidor();
 					comprobarVictoria();
 				}
 			}
@@ -467,7 +431,7 @@ public class Cliente extends JFrame {
 		btnPos8 = new JButton("");
 		btnPos8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (quiemEmpieza.equals("cliente")) {
+				if (quienEmpieza.equals("cliente")) {
 					if (posicionesServidor[7] == null) {
 						posicionesCliente[7] = "X";
 						btnPos8.setText("X");
@@ -478,7 +442,7 @@ public class Cliente extends JFrame {
 					recibirDeServidor();
 					comprobarVictoria();
 				} else {
-					recibirDeServidor();
+				
 					if (posicionesServidor[7] == null) {
 						posicionesCliente[7] = "X";
 						btnPos8.setText("X");
@@ -486,6 +450,7 @@ public class Cliente extends JFrame {
 						envio8.print(clickString + "\n");
 						envio8.flush();
 					}
+					recibirDeServidor();
 					comprobarVictoria();
 				}
 			}
@@ -497,7 +462,7 @@ public class Cliente extends JFrame {
 		btnPos9.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-				if (quiemEmpieza.equals("cliente")) {
+				if (quienEmpieza.equals("cliente")) {
 					if (posicionesServidor[8] == null) {
 						posicionesCliente[8] = "X";
 						btnPos9.setText("X");
@@ -508,7 +473,7 @@ public class Cliente extends JFrame {
 					recibirDeServidor();
 					comprobarVictoria();
 				} else {
-					recibirDeServidor();
+				
 					if (posicionesServidor[8] == null) {
 						posicionesCliente[8] = "X";
 						btnPos9.setText("X");
@@ -516,6 +481,7 @@ public class Cliente extends JFrame {
 						envio9.print(clickString + "\n");
 						envio9.flush();
 					}
+					recibirDeServidor();
 					comprobarVictoria();
 				}
 			}
