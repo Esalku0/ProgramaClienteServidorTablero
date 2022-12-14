@@ -51,6 +51,10 @@ public class Hilos implements Runnable {
 	}
 
 	public void generaPosicionInicioMaquina() throws IOException {
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/Clases
 		// ENVIO DATOS TURNO DE MAQUINA
 		boolean comprobar = false;
 		int turno1Maquina;
@@ -72,8 +76,7 @@ public class Hilos implements Runnable {
 		} while (!comprobar);
 		System.err.println("YEEE");
 	}
-	
-	
+
 	public void run() {
 
 		System.err.println("CLIENTE >>> Envio de datos para el calculo");
@@ -81,39 +84,37 @@ public class Hilos implements Runnable {
 		try {
 
 			// RECIBO DE DATOS STRING
+			System.err.println("SERVIDOR >>> Lee datos para la operacion");
 			InputStream is = conexion.getInputStream();
 			InputStreamReader isr = new InputStreamReader(is);
 			BufferedReader bfr = new BufferedReader(isr);
+			String numero = bfr.readLine();
+
 			int numeroAleatorio = (int) (Math.random() * 30 + 1);
 			System.err.println(numeroAleatorio);
 
-			System.err.println("SERVIDOR >>> Lee datos para la operacion");
-			String numero = bfr.readLine();
-
 			int numeroSoporte = Integer.parseInt(numero);
-			System.err.println(numero);
+
+			System.err.println(numeroSoporte);
 
 			if (numeroSoporte >= numeroAleatorio) {
 
 				System.err.println("Empieza el cliente");
-
 				PrintWriter pw = new PrintWriter(conexion.getOutputStream());
-				pw.print("Empieza el cliente\n");
+				pw.print("Empieza el cliente \n");
 				pw.flush();
 
 				// RECIBO DATOS TURNO DE CLIENTE
-
 				generarPosicionInicioCliente();
 				generarPosicionInicioCliente();
-
 				generarPosicionInicioCliente();
-
 				generarPosicionInicioCliente();
-
+				generarPosicionInicioCliente();
 				generarPosicionInicioCliente();
 
 			} else {
 				System.err.println("Empieza el servidor");
+<<<<<<< HEAD
 				
 				PrintWriter pw = new PrintWriter(conexion.getOutputStream());
 				pw.print("Empieza la maquina \n");
@@ -124,6 +125,15 @@ public class Hilos implements Runnable {
 				generaPosicionInicioMaquina();
 				
 				
+=======
+				PrintWriter pw = new PrintWriter(conexion.getOutputStream());
+				pw.print("Empieza la maquina \n");
+
+				pw.flush();
+
+				generaPosicionInicioMaquina();
+
+>>>>>>> origin/Clases
 				InputStream is1 = conexion.getInputStream();
 				InputStreamReader isr1 = new InputStreamReader(is1);
 				BufferedReader bfr1 = new BufferedReader(isr1);
@@ -158,7 +168,7 @@ public class Hilos implements Runnable {
 				generaPosicionInicioMaquina();
 				generaPosicionInicioMaquina();
 				generaPosicionInicioMaquina();
-				
+
 			}
 
 		} catch (IOException e) {
